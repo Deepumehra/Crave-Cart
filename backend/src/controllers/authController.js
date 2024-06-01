@@ -103,5 +103,8 @@ const resetPasswordRequest = async (req, res) => {
     }
   }
 };
-
-module.exports = { register, login, resetPassword, resetPasswordRequest };
+const  getAllCustomers=async (req,res)=>{
+  const users=await userService.findAllUsers();
+  return res.json(users);
+}
+module.exports = { register, login, resetPassword, resetPasswordRequest ,getAllCustomers};

@@ -9,6 +9,7 @@ module.exports = {
             const user = req.user;
             if (!order) throw new Error('Please provide valid request body');
             const paymentResponse = await orderService.createOrder(order, user);
+            console.log('Payment Response :',paymentResponse);
             res.status(200).json(paymentResponse);
         } catch (error) {
             if (error instanceof Error) {

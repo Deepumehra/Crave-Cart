@@ -88,9 +88,10 @@ module.exports = {
 
   async findAllUsers() {
     try {
-      const users = await this.userRepository.findAll();
+      const users = await User.find({});
       return users;
     } catch (error) {
+      console.error('Error fetching all users:', error);
       throw new Error(`Error fetching all users: ${error.message}`);
     }
   },

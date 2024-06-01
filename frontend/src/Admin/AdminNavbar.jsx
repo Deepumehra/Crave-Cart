@@ -1,17 +1,7 @@
 import MenuIcon from '@mui/icons-material/Menu';
 import { IconButton } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 
 const AdminNavbar = ({handleOpenSideBar}) => {
-  const navigate = useNavigate();
-  const { auth, cart } = useSelector((store) => store);
-  const dispatch = useDispatch();
-
-  
-
-
-
   return (
     <div className="lg:hidden px-5 z-50 py-[.8rem] bg-[#242B2E]  lg:px-20 flex justify-between">
       <div className="flex items-center space-x-4">

@@ -1,3 +1,5 @@
+import axios from "axios";
+import { API_URL, api } from "../../config/api";
 import {
   ADD_TO_FAVORITES_FAILURE,
   ADD_TO_FAVORITES_REQUEST,
@@ -16,8 +18,6 @@ import {
   REQUEST_RESET_PASSWORD_REQUEST,
   REQUEST_RESET_PASSWORD_SUCCESS,
 } from "./ActionType";
-import { API_URL, api } from "../../config/api";
-import axios from "axios";
 
 export const registerUser = (reqData) => async (dispatch) => {
   console.log("resgister request data ",reqData.userData)
@@ -53,6 +53,9 @@ export const loginUser = (reqData) => async (dispatch) => {
     if(data.jwt) localStorage.setItem("jwt",data.jwt)
     if(data.role==="ROLE_RESTAURANT_OWNER"){
       reqData.navigate("/admin/restaurant")
+    }
+    else if(data.role==="ROLE_ADMIN"){
+      reqData.navigate('/superAdmin');
     }
     else{
       reqData.navigate("/")

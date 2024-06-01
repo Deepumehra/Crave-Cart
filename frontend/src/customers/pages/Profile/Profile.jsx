@@ -7,7 +7,6 @@ import UsersAddresses from "../UsersAdresses/UsersAddresses";
 import CustomerEvents from "./CustomerEvents";
 import CustomerNavbar from './CustomerNavbar';
 import CustomerSidebar from "./CustomerSidebar";
-import Notifications from "./Notifications";
 import UserProfile from "./UserProfile";
 const Profile = (nav) => {
   const dispatch = useDispatch();
@@ -26,9 +25,9 @@ const Profile = (nav) => {
         <Route path="/" element={<UserProfile/>} />
           <Route path="/orders" element={<Orders/>} />
           <Route path="/address" element={<UsersAddresses/>} />
+          <Route path='/payments' element={<Orders/>}/>
           <Route path="/favorites" element={<Favorite/>} />
           <Route path="/events" element={<CustomerEvents/>} />
-          <Route path="/notification" element={<Notifications/>} />
         </Routes>
       </div>
     </div>

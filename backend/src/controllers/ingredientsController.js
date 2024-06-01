@@ -17,13 +17,13 @@ module.exports = {
   createIngredient: async (req, res) => {
     try {
       const { restaurantId, name, ingredientCategoryId } = req.body;
-      console.log(req.body);
+      console.log("Req Body :",req.body);
       const item = await ingredientService.createIngredientsItem(
         restaurantId,
         name,
         ingredientCategoryId
       );
-      console.log(item);
+      console.log("Item :",item);
       return res.status(200).json(item);
     } catch (error) {
       console.log(error);

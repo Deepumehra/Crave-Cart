@@ -53,7 +53,7 @@ const CreateRestaurantForm = () => {
       images: values.images,
     };
     dispatch(createRestaurant({ data, token }));
-    console.log(data);
+    console.log("Data :",data);
   };
 
   const formik = useFormik({

@@ -32,7 +32,7 @@ p{
 
 /* Style the scrollbar track on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #242B2E; /* Change the color on hover */
+  background-color: #242B5F; /* Change the color on hover */
 }
 
 @tailwind base;

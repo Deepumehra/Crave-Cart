@@ -51,7 +51,6 @@ module.exports = {
     try {
       let category=await Category.findOne({name:foodCategory})
       let query = { restaurant: restaurantId };
-      console.log(nonveg)
       if (vegetarian == "true") {
         query.isVegetarian = true;
       }

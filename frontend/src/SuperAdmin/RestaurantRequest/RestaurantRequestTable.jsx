@@ -1,31 +1,29 @@
 import {
-    Avatar,
-    Backdrop,
-    Box,
-    Button,
-    Card,
-    CardHeader,
-    CircularProgress,
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TableRow,
-    Typography,
-  } from "@mui/material";
+  Avatar,
+  Backdrop,
+  Box,
+  Button,
+  Card,
+  CardHeader,
+  CircularProgress,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Typography,
+} from "@mui/material";
   
   import React, { useEffect } from "react";
-  import { useParams } from "react-router-dom";
   
   import { useDispatch, useSelector } from "react-redux";
-  import { getMenuItemsByRestaurantId } from "../../State/Customers/Menu/menu.action";
   
   const RestaurantRequestTable = ({ isDashboard, name }) => {
     const dispatch = useDispatch();
     const { menu } = useSelector((store) => store);
     // const { id } = useParams();
-  
+    console.log("menu : ",menu);
     useEffect(() => {
       
     }, []);

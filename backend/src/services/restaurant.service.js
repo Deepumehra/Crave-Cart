@@ -118,7 +118,7 @@ module.exports = {
 
   async addToFavorites(restaurantId, user) {
     try {
-      console.log(user);
+      console.log("User :",user);
       const restaurant = await Restaurant.findById(restaurantId);
       if (!restaurant) {
         throw new Error(`Restaurant with id ${restaurantId} not found`);
@@ -143,7 +143,7 @@ module.exports = {
       }
 
       user.favorites = favorites;
-      console.log(user);
+      console.log("User :",user);
       await user.save();
 
       return dto;
@@ -157,7 +157,7 @@ module.exports = {
       const restaurant = await Restaurant.findById(id)
         .populate("owner")
         .populate("address");
-      console.log(restaurant);
+      console.log("Restaurant :",restaurant);
       if (!restaurant) {
         throw new Error(`Restaurant with id ${id} not found`);
       }

@@ -1,31 +1,28 @@
 import {
-    Avatar,
-    Backdrop,
-    Box,
-    Button,
-    Card,
-    CardHeader,
-    CircularProgress,
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TableRow,
-    Typography,
-  } from "@mui/material";
+  Avatar,
+  Backdrop,
+  Box,
+  Card,
+  CardHeader,
+  CircularProgress,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Typography
+} from "@mui/material";
   
   import React, { useEffect } from "react";
-  import { useParams } from "react-router-dom";
   
   import { useDispatch, useSelector } from "react-redux";
-  import { getMenuItemsByRestaurantId } from "../../State/Customers/Menu/menu.action";
   
   const RestaurantTable = ({ isDashboard, name }) => {
     const dispatch = useDispatch();
-    const { restaurant } = useSelector((store) => store);
+    const { restaurant} = useSelector((store) => store);
     // const { id } = useParams();
-  
+    console.log("REST : ",restaurant );
     useEffect(() => {
       
     }, []);
@@ -51,10 +48,10 @@ import {
                 <TableRow>
                   <TableCell>Banner</TableCell>
                   <TableCell>Name</TableCell>
-                  <TableCell sx={{ textAlign: "center" }}>Owner</TableCell>
                   <TableCell sx={{ textAlign: "center" }}>Cuisine Type</TableCell>
                   <TableCell sx={{ textAlign: "center" }}>Location</TableCell>
                   {!isDashboard && <TableCell sx={{ textAlign: "center" }}>Contact</TableCell>}
+                  <TableCell sx={{ textAlign: "center" }}>Mobile Number</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -66,7 +63,7 @@ import {
                   >
                     <TableCell>
                       {" "}
-                      <Avatar alt={item.name} src={item.imageUrl} />{" "}
+                      <Avatar alt={item.name} src={item.images[0]} />{" "}
                     </TableCell>
   
                     <TableCell
@@ -85,9 +82,6 @@ import {
                       </Box>
                     </TableCell>
                     <TableCell sx={{ textAlign: "center" }}>
-                      {item.owner.fullName}
-                    </TableCell>
-                    <TableCell sx={{ textAlign: "center" }}>
                       {item.cuisineType}
                     </TableCell>
                     <TableCell sx={{ textAlign: "center" }}>
@@ -97,6 +91,9 @@ import {
                     {!isDashboard && <TableCell sx={{ textAlign: "center" }}>
                       {item.contactInformation.email}
                     </TableCell>}
+                    <TableCell sx={{ textAlign: "center" }}>
+                      {item.contactInformation.mobile}
+                    </TableCell>
                   </TableRow>
                 ))}
               </TableBody>

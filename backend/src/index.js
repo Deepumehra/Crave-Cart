@@ -4,10 +4,7 @@ const cors=require('cors');
 const bodyParser = require('body-parser');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
-
-app.use(cors())
-
+app.use(cors());
 // Middleware
 app.use(bodyParser.json());
 
@@ -42,10 +39,9 @@ app.use("/api/cart", cartRouter);
 
 const cartItemRouter=require("./routes/cartItemRoutes.js")
 app.use("/api/cart-item",cartItemRouter);
-const paymentRoutes=require('./routes/paymentRoutes.js');
-app.use('/api/payment',paymentRoutes);
 const orderRouter=require("./routes/orderRoutes.js");
 app.use("/api/order",orderRouter);
+
 
 const adminOrderRoutes=require("./routes/adminOrderRoutes.js");
 app.use("/api/admin/order",adminOrderRoutes);

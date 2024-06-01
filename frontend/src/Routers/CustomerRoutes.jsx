@@ -7,6 +7,7 @@ import PasswordChangeSuccess from '../customers/pages/Auth/PasswordChangeSuccess
 import Cart from '../customers/pages/Cart/Cart'
 import HomePage from '../customers/pages/Home/HomePage'
 import NotFound from '../customers/pages/NotFound/NotFound'
+import PaymentCancel from '../customers/pages/PaymentSuccess/PaymentCancel'
 import PaymentSuccess from '../customers/pages/PaymentSuccess/PaymentSuccess'
 import Profile from '../customers/pages/Profile/Profile'
 import Restaurant from '../customers/pages/Restaurant/Restaurant'
@@ -24,6 +25,7 @@ const CustomerRoutes = () => {
             <Route exact path='/restaurant/:city/:title/:id' element={<Restaurant/>}/>
             <Route path='/cart' element={<Cart/>}/>
             <Route path='/payment/success/:id' element={<PaymentSuccess/>}/>
+            <Route path='/cancel' element={<PaymentCancel/>}/>
             <Route path='/my-profile/*' element={<Profile nav={true}/>}/>
             <Route path='/search' element={<Search/>}/>
             <Route path='/admin/add-restaurant' element={<CreateRestaurantForm/>}/>

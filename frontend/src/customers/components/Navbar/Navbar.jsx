@@ -119,11 +119,11 @@ const Navbar = () => {
             <MenuItem
               onClick={() =>
                 auth.user?.role === "ROLE_ADMIN"
-                  ? navigate("/admin")
-                  : navigate("/super-admin")
+                  ? navigate("/super-admin")
+                  : navigate("/admin")
               }
             >
-              Profile
+              Dashboard
             </MenuItem>
             <MenuItem onClick={handleLogout}>Logout</MenuItem>
           </Menu>

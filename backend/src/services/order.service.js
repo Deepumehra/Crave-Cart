@@ -10,6 +10,7 @@ module.exports = {
   async createOrder(order, user) {
     try {
       const address = order.deliveryAddress;
+      console.log('Address :',address);
       let savedAddress;
       if (address?._id) {
         const isAddressExist = await Address.findById(address._id);
@@ -23,6 +24,11 @@ module.exports = {
       else{
         savedAddress=new Address(order.deliveryAddress);
         savedAddress.save();
+      }
+      console.log('Saved Address :',savedAddress);
+      if (!user.addresses.some(addressId => addressId.equals(savedAddress._id))) {
+        user.addresses.push(savedAddress._id);
+        await user.save();
       }
 
       const restaurant = await Restaurant.findById(order.restaurantId);
@@ -49,7 +55,7 @@ module.exports = {
       }
 
       const totalPrice = await cartService.calculateCartTotals(cart);
-
+      console.log('Total Price :',totalPrice);
       const createdOrder = new Order({
         customer: user._id,
         deliveryAddress: savedAddress._id,
@@ -60,15 +66,15 @@ module.exports = {
         items: orderItems,
       });
       const savedOrder = await createdOrder.save();
-
+      console.log('Saved Order :',savedOrder);
       restaurant.orders.push(savedOrder._id);
       await restaurant.save();
-      const data=cart.cartItems;
       const paymentResponse = await paymentService.generatePaymentLink(
         savedOrder
       );
-      console.log("user :",user);
+      // console.log("user :",user);
       user.orders.push(savedOrder._id);
+      console.log('Payment Response :',paymentResponse);
       await user.save();
       const paymentRes=new Payment({
         customerId:user._id,
@@ -78,7 +84,7 @@ module.exports = {
         totalAmount:totalPrice
       })
       await paymentRes.save();
-      // console.log(paymentResponse);
+      console.log(paymentResponse);
       return paymentResponse;
     } catch (error) {
       throw new Error(`Failed to create order: ${error.message}`);
@@ -157,6 +163,8 @@ module.exports = {
 
       order.orderStatus = orderStatus;
       await order.save();
+      // send notifications
+      await NotificationService.sendOrderStatusNotification(order);
       return order;
     } catch (error) {
       throw new Error(

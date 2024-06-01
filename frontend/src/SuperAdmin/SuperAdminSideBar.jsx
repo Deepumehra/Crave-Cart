@@ -1,34 +1,32 @@
-import * as React from "react";
-import Drawer from "@mui/material/Drawer";
-import Divider from "@mui/material/Divider";
-
-import { useMediaQuery } from "@mui/material";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import LogoutIcon from "@mui/icons-material/Logout";
-import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
-import { Dashboard } from "@mui/icons-material";
-import AddIcon from "@mui/icons-material/Add";
-import PersonIcon from "@mui/icons-material/Person";
-import ShopTwoIcon from "@mui/icons-material/ShopTwo";
-import { logout } from "../State/Authentication/Action";
-import StorefrontIcon from '@mui/icons-material/Storefront';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-
+import HomeIcon from '@mui/icons-material/Home';
+import LogoutIcon from "@mui/icons-material/Logout";
+import ShopTwoIcon from "@mui/icons-material/ShopTwo";
+import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
+import { useMediaQuery } from "@mui/material";
+import Divider from "@mui/material/Divider";
+import Drawer from "@mui/material/Drawer";
+import * as React from "react";
+import { useState } from 'react';
+import { useDispatch } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import { logout } from "../State/Authentication/Action";
 const menu = [
 
-  { title: "Dashboard", icon: <Dashboard />, path: "/" },
-  { title: "Restaurants", icon: <ShoppingBagIcon />, path: "/restaurants" },
-  { title: "Customers", icon: <ShopTwoIcon />, path: "/customers" },
-  { title: "Restaurant Request", icon: <AddCircleIcon />, path: "/restaurant-request" },
-  { title: "Logout", icon: <LogoutIcon />, path: "/" },
+  {title:"Home", icon:<HomeIcon/>,path:'/home'},
+  { title: "Restaurants", icon: <ShoppingBagIcon />, path: "/restaurants"},
+  { title: "Customers", icon: <ShopTwoIcon />, path: "/customers"},
+  { title: "Restaurant Request", icon: <AddCircleIcon />, path: "/restaurant-request"},
+  { title: "Logout", icon: <LogoutIcon />, path: "/"},
 ];
 export default function SuperAdminSidebar({ handleClose, open }) {
+  const [openSideBar, setOpenSideBar] = useState(false);
+  const handleOpenSideBar = () => setOpenSideBar(true);
   const isSmallScreen = useMediaQuery("(max-width:1080px)");
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const {id} = useParams()
-  console.log("restaurantId ",id)
+  // console.log("restaurantId ",id)
 
   const handleNavigate = (item) => {
     navigate(`/super-admin${item.path}`);
@@ -36,8 +34,9 @@ export default function SuperAdminSidebar({ handleClose, open }) {
       navigate("/");
       dispatch(logout());
     }
-    
-    
+    if(item.title==="Home"){
+      navigate('/');
+    }
   };
 
   return (
@@ -58,6 +57,7 @@ export default function SuperAdminSidebar({ handleClose, open }) {
                 <div
                   onClick={() => handleNavigate(item)}
                   className="px-5 flex items-center space-x-5 cursor-pointer"
+                  key={i}
                 >
                   {item.icon}
                   <span>{item.title}</span>

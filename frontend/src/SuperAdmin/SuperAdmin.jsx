@@ -1,33 +1,50 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Route, Routes } from "react-router-dom";
-import SuperAdminSidebar from "./SuperAdminSideBar";
-import SuperAdminCustomerTable from "./SuperAdminCustomerTable/SuperAdminCustomerTable";
-import Customers from "./SuperAdminCustomerTable/Customers";
-import RestaurantTable from "./Restaurants/RestaurantTable";
-import SuperAdminRestaurant from "./Restaurants/SuperAdminRestaurant";
+import { default as AdminNavbar } from "../Admin/AdminNavbar";
 import RestaurantRequest from "./RestaurantRequest/RestaurantRequest";
-// import AdminDashboard from "./Dashboard/AdminDashboard";
-// import AdminSidebar from "./AdminSidebar";
-// import RestaurantDashboard from "./Dashboard/RestaurantDashboard";
-// import RestaurantsOrder from "./Orders/RestaurantsOrder";
-// import RestaurantsMenu from "./MenuItem/RestaurantsMenu";
-// import AddMenuForm from "./AddMenu/AddMenuForm";
-// import CreateRestaurantForm from "./AddRestaurants/CreateRestaurantForm";
+import SuperAdminRestaurant from "./Restaurants/SuperAdminRestaurant";
+import Customers from "./SuperAdminCustomerTable/Customers";
+import SuperAdminSidebar from './SuperAdminSideBar';
 
 const SuperAdmin = () => {
-  return (
-    <div className="lg:flex justify-between">
-      <div className="">
-       
-        <SuperAdminSidebar />
-      </div>
+  const [openSideBar, setOpenSideBar] = useState(false);
+  const sidebarRef = useRef(null);
 
-      <div className="w-[80vw]">
-        <Routes>
-          <Route path="/customers" element={<Customers/>}></Route>
-          <Route path="/restaurants" element={<SuperAdminRestaurant/>}></Route>
-          <Route path="/restaurant-request" element={<RestaurantRequest/>}></Route>
-        </Routes>
+  const handleOpenSideBar = () => setOpenSideBar(true);
+  const handleCloseSideBar = () => setOpenSideBar(false);
+
+  // Function to handle clicks outside the sidebar
+  const handleClickOutside = (event) => {
+    if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+      handleCloseSideBar();
+    }
+  };
+
+  // Add event listeners for clicks
+  useEffect(() => {
+    if (openSideBar) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [openSideBar]);
+
+  return (
+    <div>
+      <AdminNavbar handleOpenSideBar={handleOpenSideBar} />
+      <div className="lg:flex justify-between">
+        <SuperAdminSidebar ref={sidebarRef} handleClose={handleCloseSideBar} open={openSideBar} />
+        <div className="lg:w-[80vw] w-full">
+          <Routes>
+            <Route path="/restaurants" element={<SuperAdminRestaurant />} />
+            <Route path="/customers" element={<Customers />} />
+            <Route path="/restaurant-request" element={<RestaurantRequest />} />
+          </Routes>
+        </div>
       </div>
     </div>
   );

@@ -2,7 +2,6 @@ import Event from '@mui/icons-material/Event';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import Home from "@mui/icons-material/Home";
 import Logout from '@mui/icons-material/Logout';
-import Notifications from '@mui/icons-material/Notifications';
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import { useMediaQuery } from '@mui/material';
 import Divider from "@mui/material/Divider";
@@ -15,7 +14,6 @@ const menu = [
     { title: "Orders", icon: <ShoppingBagIcon /> },
     { title: "Favorites", icon: <FavoriteIcon /> },
     { title: "Address", icon: <Home /> },
-    { title: "Notification", icon: <Notifications /> },
     { title: "Events", icon: <Event /> },
     { title: "Logout", icon: <Logout/> },
   ];

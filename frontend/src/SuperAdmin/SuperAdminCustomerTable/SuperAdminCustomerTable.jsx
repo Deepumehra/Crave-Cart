@@ -1,30 +1,29 @@
 import {
-    Avatar,
-    Backdrop,
-    Box,
-    Button,
-    Card,
-    CardHeader,
-    CircularProgress,
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TableRow,
-    Typography,
-  } from "@mui/material";
+  Avatar,
+  Backdrop,
+  Box,
+  Card,
+  CardHeader,
+  CircularProgress,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Typography
+} from "@mui/material";
   
   import React, { useEffect } from "react";
-  import { useParams } from "react-router-dom";
   
-  import { useDispatch, useSelector } from "react-redux";
+  import { grey } from "@mui/material/colors";
+import { useDispatch, useSelector } from "react-redux";
 import { getCustomers } from "../../State/SuperAdmin/superAdmin.action";
   
   const SuperAdminCustomerTable = ({ isDashboard, name }) => {
     const dispatch = useDispatch();
     const { superAdmin } = useSelector((store) => store);
-  
+    console.log("Super Admin :",superAdmin);
     useEffect(() => {
       dispatch(getCustomers())
     }, []);
@@ -64,7 +63,9 @@ import { getCustomers } from "../../State/SuperAdmin/superAdmin.action";
                   >
                     <TableCell>
                       {" "}
-                      <Avatar alt={item.name} src={item.imageUrl} />{" "}
+                      <Avatar sx={{ bgcolor: "white",color:grey}} className="bg-white">
+                        {item.fullName[0].toUpperCase()}
+                      </Avatar>
                     </TableCell>
   
                     <TableCell
@@ -83,7 +84,7 @@ import { getCustomers } from "../../State/SuperAdmin/superAdmin.action";
                       </Box>
                     </TableCell>
                     <TableCell >
-                      {item.id}
+                      {item._id}
                     </TableCell>
                     <TableCell >
                       {item.email}
