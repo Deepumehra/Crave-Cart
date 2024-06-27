@@ -66,7 +66,7 @@ const OrdersTable = ({ isDashboard, name }) => {
     dispatch(updateOrderStatus({ orderId, orderStatus,jwt }));
   };
 
-  // console.log("restaurants orders store ", restaurantsOrder)
+  console.log("restaurants orders store ", restaurantsOrder)
 
   return (
     <Box>
@@ -90,7 +90,6 @@ const OrdersTable = ({ isDashboard, name }) => {
                 <TableCell>Price</TableCell>
              
                 <TableCell>Name</TableCell>
-                {!isDashboard && <TableCell>Ingredients</TableCell>}
                 {!isDashboard &&<TableCell>Status</TableCell>}
                 {!isDashboard && (
                   <TableCell sx={{ textAlign: "center" }}>Update</TableCell>
@@ -137,16 +136,6 @@ const OrdersTable = ({ isDashboard, name }) => {
                         </p>
                       ))}
                     </TableCell>
-                  {!isDashboard &&  <TableCell className="space-y-2">
-                      {item.items.map((orderItem) =>
-                      <div className="flex gap-1 flex-wrap">
-                       { orderItem.ingredients?.map((ingre) => (
-                          <Chip label={ingre} />
-                        ))}
-                      </div>
-                        
-                      )}
-                    </TableCell>}
                     {!isDashboard &&<TableCell className="text-white">
                       <Chip
                         sx={{

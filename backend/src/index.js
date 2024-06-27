@@ -7,8 +7,6 @@ const app = express();
 app.use(cors());
 // Middleware
 app.use(bodyParser.json());
-
-
 const homeRouter=require("./routes/home.router.js")
 
 app.use("/",homeRouter);
@@ -57,7 +55,5 @@ app.use('/api/events',eventRoutes)
 
 const adminEventRoutes=require("./routes/adminEventRoutes.js")
 app.use("/api/admin/events",adminEventRoutes)
-
-
 
 module.exports={app};

@@ -143,6 +143,7 @@ module.exports = {
   },
 
   async updateOrder(orderId, orderStatus) {
+    console.log(orderId,orderStatus);
     try {
       const validStatuses = [
         "OUT_FOR_DELIVERY",

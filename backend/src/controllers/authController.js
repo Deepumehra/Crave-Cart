@@ -104,7 +104,8 @@ const resetPasswordRequest = async (req, res) => {
   }
 };
 const  getAllCustomers=async (req,res)=>{
-  const users=await userService.findAllUsers();
+  const user=req.user;
+  const users=await userService.findAllUsers(user);
   return res.json(users);
 }
 module.exports = { register, login, resetPassword, resetPasswordRequest ,getAllCustomers};
