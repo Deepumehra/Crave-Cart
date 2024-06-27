@@ -143,6 +143,7 @@ module.exports = {
   },
 
   async updateOrder(orderId, orderStatus) {
+    console.log(orderId,orderStatus);
     try {
       const validStatuses = [
         "OUT_FOR_DELIVERY",
@@ -163,8 +164,6 @@ module.exports = {
 
       order.orderStatus = orderStatus;
       await order.save();
-      // send notifications
-      await NotificationService.sendOrderStatusNotification(order);
       return order;
     } catch (error) {
       throw new Error(

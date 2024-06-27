@@ -13,12 +13,10 @@ export const createOrder = (reqData) => {
           Authorization: `Bearer ${reqData.jwt}`,
         },
       });
-      console.log(response.data.session);
-      // Check if the response contains a payment URL
-      if (response.data.session.url) {
+      console.log(response.data.paymentLink);
+      if (response.data.paymentLink) {
         // Redirect to the payment URL
-        // window.location.href = response.data.session.url;
-        window.location.href=response.data.session.success_url;
+        window.location.href = response.data.paymentLink.short_url;
       }
       
       dispatch(createOrderSuccess(response.data));

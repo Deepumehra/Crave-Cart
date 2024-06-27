@@ -1,16 +1,17 @@
 // actions.js
-import axios from "axios";
+import { api } from "../../../config/api.js";
 import {
-  UPDATE_ORDER_STATUS_REQUEST,
-  UPDATE_ORDER_STATUS_SUCCESS,
-  UPDATE_ORDER_STATUS_FAILURE,
+  GET_RESTAURANTS_ORDER_FAILURE,
   GET_RESTAURANTS_ORDER_REQUEST,
   GET_RESTAURANTS_ORDER_SUCCESS,
-  GET_RESTAURANTS_ORDER_FAILURE,
+  UPDATE_ORDER_STATUS_FAILURE,
+  UPDATE_ORDER_STATUS_REQUEST,
+  UPDATE_ORDER_STATUS_SUCCESS,
 } from "./ActionType.js";
-import { api } from "../../../config/api.js";
 
 export const updateOrderStatus = ({orderId,orderStatus,jwt}) => {
+  console.log("Order Id : ",orderId);
+  console.log("Order Status : ",orderStatus);
   return async (dispatch) => {
     try {
       dispatch({ type: UPDATE_ORDER_STATUS_REQUEST });
