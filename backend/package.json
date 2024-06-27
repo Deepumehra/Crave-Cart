@@ -26,7 +26,6 @@
     "mongoose": "^7.3.2",
     "nodemailer": "^6.9.13",
     "razorpay": "^2.9.4",
-    "stripe": "^14.23.0",
     "uuid": "^9.0.1"
   }
 }
