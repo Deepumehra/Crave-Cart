@@ -163,8 +163,6 @@ module.exports = {
 
       order.orderStatus = orderStatus;
       await order.save();
-      // send notifications
-      await NotificationService.sendOrderStatusNotification(order);
       return order;
     } catch (error) {
       throw new Error(
