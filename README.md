@@ -10,6 +10,7 @@ Crave Cart is an online food delivery application designed to bridge the gap bet
 - **Authentication**: JSON Web Tokens (JWT)
 - **State Management**: React-Redux
 - **UI Framework**: Material-UI
+- **Payment Gateway API**: Razorpay API 
 
 ## Features
 
