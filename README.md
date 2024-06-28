@@ -50,7 +50,7 @@ Here are the deployment links for the application:
 - Frontend (Vercel): [Vercel Deployment Link]
 - Backend (Render): [Render Deployment Link]
 
-(Note: Replace `[Vercel Deployment Link]` and `[Render Deployment Link]` with the actual deployment URLs.)
+(Note: Replace `[https://crave-cart-frontend.vercel.app/]` and `[Render Deployment Link]` with the actual deployment URLs.)
 
 ## Getting Started
 
