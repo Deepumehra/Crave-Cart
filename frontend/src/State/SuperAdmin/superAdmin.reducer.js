@@ -3,6 +3,7 @@ import * as actionTypes from "./superAdmin.actionType";
 const initialState = {
   customers:[],
   pendingCustomers:[],
+  orders:[],
   loading: false,
   error: null,
 };
@@ -10,6 +11,7 @@ const initialState = {
 const superAdminReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.GET_CUSTOMERS_REQUEST:
+    case actionTypes.GET_ORDER_REQUEST:
     case actionTypes.GET_PENDING_CUSTOMERS_REQUEST:
       return {
         ...state,
@@ -22,13 +24,19 @@ const superAdminReducer = (state = initialState, action) => {
         loading: false,
         customers: action.payload,
     };
+    case actionTypes.GET_ORDER_SUCCESS:
+      return {
+        ...state,
+        loading: true,
+        customers: action.payload,
+    };
     case actionTypes.GET_PENDING_CUSTOMERS_SUCCESS:
       return {
         ...state,
         loading: false,
         pendingCustomers: action.payload,
     };
-
+    case actionTypes.GET_ORDER_FAILURE:
     case actionTypes.GET_CUSTOMERS_FAILURE:
     case actionTypes.GET_PENDING_CUSTOMERS_FAILURE:
       return {

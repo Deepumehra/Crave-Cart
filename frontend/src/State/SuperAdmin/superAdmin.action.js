@@ -1,5 +1,5 @@
 import { api } from "../../config/api";
-import { GET_CUSTOMERS_FAILURE, GET_CUSTOMERS_REQUEST, GET_CUSTOMERS_SUCCESS, GET_PENDING_CUSTOMERS_FAILURE, GET_PENDING_CUSTOMERS_REQUEST, GET_PENDING_CUSTOMERS_SUCCESS } from "./superAdmin.actionType";
+import { GET_CUSTOMERS_FAILURE, GET_CUSTOMERS_REQUEST, GET_CUSTOMERS_SUCCESS, GET_ORDER_FAILURE, GET_ORDER_REQUEST, GET_ORDER_SUCCESS, GET_PENDING_CUSTOMERS_FAILURE, GET_PENDING_CUSTOMERS_REQUEST, GET_PENDING_CUSTOMERS_SUCCESS } from "./superAdmin.actionType";
 
 export const getCustomers = () => {
     return async (dispatch) => {
@@ -14,7 +14,19 @@ export const getCustomers = () => {
       }
     };
 };
-
+export const getAllOrders=()=>{
+    return async (dispatch) => {
+      dispatch({type:GET_ORDER_REQUEST});
+      try {
+        const { data } = await api.get("api/prder/getAllOrders");
+        console.log("USERS :",data);
+        dispatch({type:GET_ORDER_SUCCESS,payload:data});
+        console.log("created restaurant ", data);
+      } catch (error) {
+        dispatch({type:GET_ORDER_FAILURE,error:error.message});
+      }
+    };
+}
 export const getPendingCustomers = () => {
     return async (dispatch) => {
       dispatch({type:GET_PENDING_CUSTOMERS_REQUEST});

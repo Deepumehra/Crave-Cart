@@ -24,7 +24,7 @@ export const registerUser = (reqData) => async (dispatch) => {
   try {
     dispatch({ type: REGISTER_REQUEST });
 
-    const { data } = await axios.post(`${API_URL}/auth/signup`, reqData.userData);
+    const { data } = await api.post(`/auth/signup`, reqData.userData);
     if(data.jwt) localStorage.setItem("jwt",data.jwt)
     if(data.role==="ROLE_RESTAURANT_OWNER"){
       reqData.navigate("/admin/restaurant")
@@ -49,7 +49,7 @@ export const loginUser = (reqData) => async (dispatch) => {
   try {
     dispatch({ type: LOGIN_REQUEST });
 
-    const { data } = await axios.post(`${API_URL}/auth/signin`, reqData.data);
+    const { data } = await api.post(`/auth/signin`, reqData.data);
     if(data.jwt) localStorage.setItem("jwt",data.jwt)
     if(data.role==="ROLE_RESTAURANT_OWNER"){
       reqData.navigate("/admin/restaurant")

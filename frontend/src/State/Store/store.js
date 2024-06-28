@@ -9,7 +9,6 @@ import { orderReducer } from "../Customers/Orders/order.reducer";
 import restaurantReducer from "../Customers/Restaurant/Reducer";
 import superAdminReducer from '../SuperAdmin/superAdmin.reducer';
 
-
 const rootReducer=combineReducers({
 
     auth:authReducer,

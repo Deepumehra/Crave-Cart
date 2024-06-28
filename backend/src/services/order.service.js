@@ -171,4 +171,16 @@ module.exports = {
       );
     }
   },
+  async getAllOrders() {
+    try {
+      const orders = await Order.find({})
+        .populate('customer')
+        .populate('deliveryAddress') 
+        .populate('items') 
+        .populate('restaurant'); 
+      return orders;
+    } catch (error) {
+      throw new Error(`Failed to find all orders: ${error.message}`);
+    }
+  }
 };

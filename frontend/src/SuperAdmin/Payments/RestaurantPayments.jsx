@@ -13,38 +13,32 @@ import {
   Typography
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { api } from "../../config/api";
 
 // Fetch orders from the API
-async function getAllOrders() {
+async function getAllPayments() {
   try {
-    const response = await api.get("/api/order/getAllOrders");
+    const response = await api.get("/api/order/getAllPayments");
     return response.data;
   } catch (error) {
     console.error("Failed to fetch orders:", error);
     return [];
   }
 }
-
-
-const RestaurantRequestTable = ({ isDashboard, name }) => {
-  const dispatch = useDispatch();
-  const { menu} = useSelector((store) => store)
-  const [orderData, setOrderData] = useState([]);
+const RestaurantPayments = ({name}) => {
+  const [paymentData, setPaymentData] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchData() {
       setLoading(true);
-      const orders = await getAllOrders();
-      setOrderData(orders);
+      const payments = await getAllPayments();
+      setPaymentData(payments);
       setLoading(false);
     }
     fetchData();
   }, []);
-  console.log(orderData);
-
+  console.log("Payment Data : ",paymentData);
   return (
     <Box width={"100%"}>
       <Card className="mt-1">
@@ -60,16 +54,16 @@ const RestaurantRequestTable = ({ isDashboard, name }) => {
           <Table aria-label="table in dashboard">
             <TableHead>
               <TableRow>
-                <TableCell>Id</TableCell>
-                <TableCell sx={{ textAlign: "center" }}>Name</TableCell>
-                <TableCell sx={{ textAlign: "center" }}>Email</TableCell>
-                <TableCell sx={{ textAlign: "center" }}>Restaurant</TableCell>
-                <TableCell sx={{ textAlign: "center" }}>Order Status</TableCell>
+                <TableCell sx={{ textAlign: "center" }}>Payment Id</TableCell>
+                <TableCell sx={{ textAlign: "center" }}>Customer Id</TableCell>
+                <TableCell sx={{ textAlign: "center" }}>Payment Method</TableCell>
+                <TableCell sx={{ textAlign: "center" }}>Payment Status</TableCell>
+                <TableCell sx={{ textAlign: "center" }}>Order Id</TableCell>
                 <TableCell sx={{ textAlign: "center" }}>Amount</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {orderData.slice(0, isDashboard ? 7 : orderData.length).map((item,id) => (
+              {paymentData.slice(0, paymentData.length>=10 ? 7 : paymentData.length).map((item,id) => (
                 <TableRow
                   hover
                   key={id}
@@ -90,16 +84,16 @@ const RestaurantRequestTable = ({ isDashboard, name }) => {
                     </Box>
                   </TableCell>
                   <TableCell sx={{ textAlign: "center" }}>
-                    {item.customer.fullName}
+                    {item.customerId}
                   </TableCell>
                   <TableCell sx={{ textAlign: "center" }}>
-                    {item.customer.email}
+                    {item.paymentMethod}
                   </TableCell>
                   <TableCell sx={{ textAlign: "center" }}>
-                    {item.restaurant.name}
+                    {item.paymentStatus}
                   </TableCell>
                   <TableCell sx={{ textAlign: "center" }}>
-                    {item.orderStatus || 10}
+                    {item.orderId}
                   </TableCell>
                   <TableCell sx={{ textAlign: "center" }}>
                     {item.totalAmount}
@@ -119,6 +113,6 @@ const RestaurantRequestTable = ({ isDashboard, name }) => {
       </Backdrop>
     </Box>
   );
-};
+}
 
-export default RestaurantRequestTable;
+export default RestaurantPayments;

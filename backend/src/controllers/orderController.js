@@ -32,5 +32,18 @@ module.exports = {
                 res.status(500).json({ error: 'Internal server error' });
             }
         }
+    },
+    getAllOrders:async (req,res)=>{
+        try{
+            user=req.user;
+            const orders=await orderService.getAllOrders();
+            res.status(200).json(orders);
+        }catch(error){
+            if (error instanceof Error) {
+                res.status(400).json({ error: error.message });
+            } else {
+                res.status(500).json({ error: 'Internal server error' });
+            }
+        }
     }
 };
