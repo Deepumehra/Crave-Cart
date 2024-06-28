@@ -4,10 +4,10 @@ export const uploadToCloudinary = async (pics) => {
       const data = new FormData();
       data.append("file", pics);
       data.append("upload_preset", "Crave-cart");
-      data.append("cloud_name","dpksujnt8");
+      data.append("cloud_name","<CLOUD_NAME>");
   
       const res = await 
-      fetch(`https://api.cloudinary.com/v1_/dpksujnt8/image/upload`, {
+      fetch(`https://api.cloudinary.com/v1_/<CLOUD_NAME>/image/upload`, {
         method: "post",
         body: data,
       })
