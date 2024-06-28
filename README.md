@@ -48,7 +48,7 @@ Crave Cart is an online food delivery application designed to bridge the gap bet
 
 Here are the deployment links for the application:
 - Frontend (Vercel): [https://crave-cart-frontend.vercel.app/]
-- Backend (Render): [Render Deployment Link]
+- Backend (Render): [https://crave-cart-backend.onrender.com]
 
 ## Getting Started
 
